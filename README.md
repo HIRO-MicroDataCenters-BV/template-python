@@ -1,35 +1,34 @@
 # template-python
 Web service template in Python for reuse.
 
-## Installing dependencies
-`poetry install --no-root`
+## Installation
+1. If you don't have `Poetry` installed run:
 
-## Using the virtual environment
-`poetry shell`
+```bash
+pip insatll poetry
+```
 
-## Set up GIT hooks for development
-`pre-commit install`
+2. Install dependencies:
 
-## Launch of the project
-`uvicorn app.main:app [--reload]`
+```bash
+poetry config virtualenvs.in-project true
+poetry install --no-root --with dev,test
+```
 
-The project will be launched at http://127.0.0.1:8000
-REST API documentation will be available at http://127.0.0.1:8000/docs
+3. Install `pre-commit` hooks:
 
-## Running tests
-`pytest`
+```bash
+poetry run pre-commit install
+```
 
-## Creating and running a Docker Image
-`docker build -t myimage .`
-`docker build -t myimage --target test .`
-`docker run -d --name mycontainer -p 80:80 myimage`
+4. Launch of the project:
 
-## Deploy
-### GitHub Actions
-Add secrets:
-* DOCKER_USERNAME
-* DOCKER_PASSWORD
-* DOCKER_IMAGE_NAME
+```bash
+poetry run uvicorn app.main:app [--reload]
+```
 
-### Kubernetes
-???
+5. Running tests:
+
+```bash
+poetry run pytest
+```
