@@ -19,7 +19,7 @@ homepage = "https://github.com/HIRO-MicroDataCenters-BV/python-service-template"
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = "^0.109"
-uvicorn = "^0.26"
+uvicorn = "^0.27"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6"
