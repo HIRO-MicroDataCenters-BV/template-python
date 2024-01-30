@@ -24,6 +24,9 @@ make_version() {
   BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
   LATEST_TAG=$( [[ $GITHUB_REF == refs/tags/* ]] && echo "${GITHUB_REF##refs/tags/}" || echo "" )
 
+  echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+  echo "GITHUB_REF=${GITHUB_REF}"
+
   echo "GIT_SHA: $GIT_SHA"
   echo "GIT_COUNT: $GIT_COUNT"
   echo "BRANCH: $BRANCH"
