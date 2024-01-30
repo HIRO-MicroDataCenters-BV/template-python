@@ -39,7 +39,7 @@ make_version() {
     # appVersion from the chart (must be <64 symbols) then goes to resource label (validated using (([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?)
     # (Note that full version will also get 'anomaly-detection' chart name in front of VERSION_DOCKER)
     BRANCH_TOKEN=$(echo "${BRANCH//[^a-zA-Z0-9-_.]/-}" | cut -c1-16 | sed -e 's/-$//')
-    VERSION_APP="$VERSION_BASE.dev${GIT_COUNT}+${BRANCH_TOKEN}-${GIT_SHA}"
+    VERSION_APP="$VERSION_BASE.dev${GIT_COUNT}-${BRANCH_TOKEN}-${GIT_SHA}"
     if [ "$BRANCH" == "master" ];
     then
       VERSION_CHART="$VERSION_BASE-snapshot.${GIT_COUNT}"
