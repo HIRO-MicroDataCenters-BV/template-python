@@ -4,6 +4,7 @@ set -o errexit
 set -o nounset
 
 ROOT="${GITHUB_WORKSPACE}"
+MAIN_BRANCH="main"
 
 VERSION_BASE_PATH="${ROOT}/VERSION_BASE"
 VERSION_BASE=$(cat "${VERSION_BASE_PATH}")
@@ -12,15 +13,16 @@ VERSION_APP_PATH="${ROOT}/VERSION"
 VERSION_DOCKER_PATH="${ROOT}/VERSION_DOCKER"
 VERSION_CHART_PATH="${ROOT}/VERSION_CHART"
 
-#                 Python                       Docker                                                                 Chart
-# branch:         4.2.0.dev3-branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa                                       4.2.0-snapshot.3.branch.411fa4aa
-# master:         4.2.0.dev3-master-411fa4aa   4.2.0-master-latest,4.2.0-snapshot.3,4.2.0-snapshot.3.master.411fa4aa  4.2.0-snapshot.3
-# public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa                                      4.2.0 or 4.2.0-snapshot.3.tag.411fa4aa
+#                 App                          Docker                              Chart
+# tag             4.2.0.dev3-tag-411fa4aa      4.2.0-snapshot.3.tag.411fa4aa       4.2.0-snapshot.3.tag.411fa4aa
+# branch, pr:     4.2.0.dev3-branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa    4.2.0-snapshot.3.branch.411fa4aa
+# main:           4.2.0.dev3-main-411fa4aa     4.2.0-snapshot.3.main.411fa4aa      4.2.0-snapshot.3
+# public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa   4.2.0
 make_version() {
   VERSION_BASE_HASH=$(git log --follow -1 --pretty=%H "$VERSION_BASE_PATH")
   GIT_COUNT=$(git rev-list --count "$VERSION_BASE_HASH"..HEAD)
   GIT_SHA=$(git log -1 --pretty=%h)
-  BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}
+  BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}  # Branch or tag
   TAG=$( [[ $GITHUB_REF == refs/tags/* ]] && echo "${GITHUB_REF##refs/tags/}" || echo "" )
 
   echo "GIT_SHA: $GIT_SHA"
@@ -28,8 +30,6 @@ make_version() {
   echo "BRANCH: $BRANCH"
   echo "TAG: $TAG"
 
-  # Docker versions are set starting from the most generic to the most specific
-  # so we can take the most generic one and set to the chart values later
   if [[ "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
   then
     VERSION_APP="$TAG"
@@ -41,16 +41,18 @@ make_version() {
     # Otherwise this will trigger failures because we set appVersion in the helm chart to docker version.
     # appVersion from the chart (must be <64 symbols) then goes to resource label (validated using (([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?)
     # (Note that full version will also get 'anomaly-detection' chart name in front of VERSION_DOCKER)
+    # Docker versions are set starting from the most generic to the most specific
+    # so we can take the most generic one and set to the chart values later
     BRANCH_TOKEN=$(echo "${BRANCH//[^a-zA-Z0-9-_.]/-}" | cut -c1-16 | sed -e 's/-$//')
     VERSION_APP="$VERSION_BASE.dev${GIT_COUNT}-${BRANCH_TOKEN}-${GIT_SHA}"
-    if [ "$BRANCH" == "master" ];
+    if [ "$BRANCH" == "$MAIN_BRANCH" ];
     then
       VERSION_CHART="$VERSION_BASE-snapshot.${GIT_COUNT}"
       MASTER_VERSION="$VERSION_BASE-snapshot.${GIT_COUNT}.${BRANCH_TOKEN}.${GIT_SHA}"
-      VERSION_DOCKER="${VERSION_CHART//[^a-zA-Z0-9-_.]/-},${MASTER_VERSION//[^a-zA-Z0-9-_.]/-}"
+      VERSION_DOCKER="${VERSION_CHART},${MASTER_VERSION}"
     else
       VERSION_CHART="$VERSION_BASE-snapshot.${GIT_COUNT}.${BRANCH_TOKEN}.${GIT_SHA}"
-      VERSION_DOCKER="${VERSION_CHART//[^a-zA-Z0-9-_.]/-}"
+      VERSION_DOCKER=$VERSION_CHART
     fi
   fi
 
