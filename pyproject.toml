@@ -4,13 +4,14 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "template-python"
-version = "{{VERSION_APP}}"
+version = "0.0.0"
 description = "Web service template in Python for reuse."
 readme = "README.md"
 authors = ["HIRO-MicroDataCenters <all-hiro@hiro-microdatacenters.nl>"]
 license = "MIT"
 repository = "https://github.com/HIRO-MicroDataCenters-BV/python-service-template"
 homepage = "https://github.com/HIRO-MicroDataCenters-BV/python-service-template"
+packages = [{include = "*", from="app"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"

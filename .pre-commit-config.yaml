@@ -8,6 +8,8 @@ repos:
     rev: v3.4.0
     hooks:
       - id: trailing-whitespace
+        exclude:
+          README.md
       - id: end-of-file-fixer
       - id: check-yaml
         exclude: charts/

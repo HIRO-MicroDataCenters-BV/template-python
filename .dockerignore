@@ -39,3 +39,5 @@ venv
 
 # Helm chart config
 .helm
+
+.dist
