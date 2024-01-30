@@ -79,3 +79,6 @@ Setup secrets at https://github.com/<workspace>/<project>/settings/secrets/actio
 3. KUBE_CONFIG - Kubernetes config in base64
 
 https://docs.github.com/en/actions
+
+# Collaboration guidelines
+HIRO uses and requires from its partners [GitFlow with Forks](https://hirodevops.notion.site/GitFlow-with-Forks-3b737784e4fc40eaa007f04aed49bb2e?pvs=4)
