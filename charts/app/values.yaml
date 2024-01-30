@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: "{{DOCKER_IMAGE}}"
-  tag: "{{DOCKER_IMAGE_TAG}}"
+  repository: ""
+  tag: ""
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

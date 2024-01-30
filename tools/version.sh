@@ -74,16 +74,16 @@ set_version_in_chart() {
   DOCKER_IMAGE_TAG=$(rev "${VERSION_DOCKER_PATH}" | cut -d ',' -f 1 | rev)
   VERSION_CHART=$(cat "${VERSION_CHART_PATH}")
 
-  sed -i "s#repository: \"{{DOCKER_IMAGE}}\"#repository: \"$DOCKER_IMAGE_NAME\"#" "${CHART_PATH}/values.yaml"
-  sed -i "s#tag: \"{{DOCKER_IMAGE_TAG}}\"#tag: \"$DOCKER_IMAGE_TAG\"#" "${CHART_PATH}/values.yaml"
-  sed -i "s#version: \"{{VERSION_CHART}}\"#version: \"$VERSION_CHART\"#" "${CHART_PATH}/Chart.yaml"
-  sed -i "s#appVersion: \"{{VERSION_APP}}\"#appVersion: \"$VERSION_APP\"#" "${CHART_PATH}/Chart.yaml"
+  sed -i "s#repository: \"\"#repository: \"$DOCKER_IMAGE_NAME\"#" "${CHART_PATH}/values.yaml"
+  sed -i "s#tag: \"\"#tag: \"$DOCKER_IMAGE_TAG\"#" "${CHART_PATH}/values.yaml"
+  sed -i "s#version: \"\"#version: \"$VERSION_CHART\"#" "${CHART_PATH}/Chart.yaml"
+  sed -i "s#appVersion: \"\"#appVersion: \"$VERSION_APP\"#" "${CHART_PATH}/Chart.yaml"
 }
 
 set_version_in_pyproject() {
   VERSION_APP=$(cat "${VERSION_APP_PATH}")
   PYPROJECT_PATH="${ROOT}/pyproject.toml"
-  sed -i "s#version = \"{{VERSION_APP}}\"#version = \"$VERSION_APP\"#" "${PYPROJECT_PATH}"
+  sed -i "s#version = \"0.0.0\"#version = \"$VERSION_APP\"#" "${PYPROJECT_PATH}"
 }
 
 get_docker_image_tags() {
