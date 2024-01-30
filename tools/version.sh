@@ -15,26 +15,27 @@ VERSION_CHART_PATH="${ROOT}/VERSION_CHART"
 #                 Python                       Docker                                                                 Chart
 # branch:         4.2.0.dev3-branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa                                       4.2.0-snapshot.3.branch.411fa4aa
 # master:         4.2.0.dev3-master-411fa4aa   4.2.0-master-latest,4.2.0-snapshot.3,4.2.0-snapshot.3.master.411fa4aa  4.2.0-snapshot.3
-# public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa                                      4.2.0
+# public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa                                      4.2.0 or 4.2.0-snapshot.3.tag.411fa4aa
 make_version() {
   VERSION_BASE_HASH=$(git log --follow -1 --pretty=%H "$VERSION_BASE_PATH")
   GIT_COUNT=$(git rev-list --count "$VERSION_BASE_HASH"..HEAD)
   GIT_SHA=$(git log -1 --pretty=%h)
-  BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-  LATEST_TAG=$( [[ $GITHUB_REF == refs/tags/* ]] && echo "${GITHUB_REF##refs/tags/}" || echo "" )
-
-  echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
-  echo "GITHUB_REF=${GITHUB_REF}"
+  BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}
+  TAG=$( [[ $GITHUB_REF == refs/tags/* ]] && echo "${GITHUB_REF##refs/tags/}" || echo "" )
 
   echo "GIT_SHA: $GIT_SHA"
   echo "GIT_COUNT: $GIT_COUNT"
   echo "BRANCH: $BRANCH"
-  echo "LATEST_TAG: $LATEST_TAG"
+  echo "TAG: $TAG"
 
   # Docker versions are set starting from the most generic to the most specific
   # so we can take the most generic one and set to the chart values later
-  if [[ -z "$LATEST_TAG" ]];
+  if [[ "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
   then
+    VERSION_APP="$TAG"
+    VERSION_CHART="$TAG"
+    VERSION_DOCKER="$TAG,$TAG-latest,${TAG}-${GIT_SHA}"
+  else
     # We want to be sure that BRANCH does not contain any invalid symbols
     # and truncated to 16 symbols such that the full version has size 64 symbols maximum.
     # Otherwise this will trigger failures because we set appVersion in the helm chart to docker version.
@@ -51,10 +52,6 @@ make_version() {
       VERSION_CHART="$VERSION_BASE-snapshot.${GIT_COUNT}.${BRANCH_TOKEN}.${GIT_SHA}"
       VERSION_DOCKER="${VERSION_CHART//[^a-zA-Z0-9-_.]/-}"
     fi
-  else
-    VERSION_APP="$LATEST_TAG"
-    VERSION_CHART="$LATEST_TAG"
-    VERSION_DOCKER="$LATEST_TAG,$LATEST_TAG-latest,${LATEST_TAG}-${GIT_SHA}"
   fi
 
   echo "APP VERSION: ${VERSION_APP}"
