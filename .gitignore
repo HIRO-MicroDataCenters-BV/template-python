@@ -618,3 +618,5 @@ MigrationBackup/
 
 # Helm chart config
 .helm
+
+.dist
