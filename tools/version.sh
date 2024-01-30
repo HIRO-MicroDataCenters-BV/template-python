@@ -13,11 +13,11 @@ VERSION_APP_PATH="${ROOT}/VERSION"
 VERSION_DOCKER_PATH="${ROOT}/VERSION_DOCKER"
 VERSION_CHART_PATH="${ROOT}/VERSION_CHART"
 
-#                 App                          Docker                              Chart
-# tag             4.2.0.dev3-tag-411fa4aa      4.2.0-snapshot.3.tag.411fa4aa       4.2.0-snapshot.3.tag.411fa4aa
-# branch, pr:     4.2.0.dev3-branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa    4.2.0-snapshot.3.branch.411fa4aa
-# main:           4.2.0.dev3-main-411fa4aa     4.2.0-snapshot.3.main.411fa4aa      4.2.0-snapshot.3
-# public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa   4.2.0
+#                 App                          Docker                                             Chart
+# tag             4.2.0.dev3-tag-411fa4aa      4.2.0-snapshot.3.tag.411fa4aa                      4.2.0-snapshot.3.tag.411fa4aa
+# branch, pr:     4.2.0.dev3-branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa                   4.2.0-snapshot.3.branch.411fa4aa
+# main:           4.2.0.dev3-main-411fa4aa     4.2.0-snapshot.3,4.2.0-snapshot.3.main.411fa4aa    4.2.0-snapshot.3
+# public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa                  4.2.0
 make_version() {
   VERSION_BASE_HASH=$(git log --follow -1 --pretty=%H "$VERSION_BASE_PATH")
   GIT_COUNT=$(git rev-list --count "$VERSION_BASE_HASH"..HEAD)
