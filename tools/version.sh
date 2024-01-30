@@ -3,8 +3,8 @@
 set -o errexit
 set -o nounset
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-ROOT=$(cd "${SCRIPT_DIR}/..";pwd)
+ROOT="${GITHUB_WORKSPACE}"
+
 VERSION_BASE_PATH="${ROOT}/VERSION_BASE"
 VERSION_BASE=$(cat "${VERSION_BASE_PATH}")
 
@@ -13,10 +13,9 @@ VERSION_DOCKER_PATH="${ROOT}/VERSION_DOCKER"
 VERSION_CHART_PATH="${ROOT}/VERSION_CHART"
 
 #                 Python                       Docker                                                                 Chart
-# branch:         4.2.0.dev3+branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa                                       4.2.0-snapshot.3.branch.411fa4aa
-# master:         4.2.0.dev3+master-411fa4aa   4.2.0-master-latest,4.2.0-snapshot.3,4.2.0-snapshot.3.master.411fa4aa  4.2.0-snapshot.3
+# branch:         4.2.0.dev3-branch-411fa4aa   4.2.0-snapshot.3.branch.411fa4aa                                       4.2.0-snapshot.3.branch.411fa4aa
+# master:         4.2.0.dev3-master-411fa4aa   4.2.0-master-latest,4.2.0-snapshot.3,4.2.0-snapshot.3.master.411fa4aa  4.2.0-snapshot.3
 # public release: 4.2.0                        4.2.0,4.2.0-latest,4.2.0-411fa4aa                                      4.2.0
-
 make_version() {
   VERSION_BASE_HASH=$(git log --follow -1 --pretty=%H "$VERSION_BASE_PATH")
   GIT_COUNT=$(git rev-list --count "$VERSION_BASE_HASH"..HEAD)
