@@ -2,5 +2,5 @@ apiVersion: v2
 name: app
 description: Web service template in Python for reuse.
 type: application
-version: 0.1.0
-appVersion: "1.16.0"
+version: "{{VERSION_CHART}}"
+appVersion: "{{VERSION_APP}}"

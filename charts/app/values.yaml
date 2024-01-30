@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: app
+  repository: "{{DOCKER_IMAGE}}"
+  tag: "{{DOCKER_IMAGE_TAG}}"
   pullPolicy: IfNotPresent
-  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""

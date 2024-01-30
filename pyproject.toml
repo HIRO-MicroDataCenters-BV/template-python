@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "template-python"
-version = "0.1.0"
+version = "{{VERSION_APP}}"
 description = "Web service template in Python for reuse."
 readme = "README.md"
 authors = ["HIRO-MicroDataCenters <all-hiro@hiro-microdatacenters.nl>"]
