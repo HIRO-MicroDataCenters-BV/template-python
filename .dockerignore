@@ -40,4 +40,5 @@ venv
 # Helm chart config
 .helm
 
+# Release
 .dist
