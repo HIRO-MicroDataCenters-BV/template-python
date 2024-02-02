@@ -54,7 +54,7 @@ https://docs.docker.com/
 ## Release
 The release is automatically built in GitHub Actions and saved to branch gh-pages after pushing code/tag/pr.
 
-Create the branch gh-pages and use it as a GitHub page.
+Create the branch gh-pages and use it as a GitHub page https://pages.github.com/.
 The releases will be available at https://github.com/<workspace>/<project>/releases/download/<app>-<version>/<app>-<version>.tgz.
 The index will be available at https://<workspace>.github.io/<project>/index.yaml.
 You can use URL https://<workspace>.github.io/<project>/ on https://artifacthub.io/.
@@ -62,8 +62,13 @@ You can use URL https://<workspace>.github.io/<project>/ on https://artifacthub.
 To create a release, add a tag in GIT with the format a.a.a, where 'a' is an integer.
 The release version for branches, pull requests, and other tags will be generated based on the last tag of the form a.a.a.
 
-The Helm chart version, and Docker images versions will be automatically generated from this version.
-**Do not manually change the version in pyproject.toml and Helm charts.**
+The Helm chart version, and Docker images versions will be automatically generated from this version in GitHub Actions.
+
+You can build release manually:
+
+```bash
+helm package charts/<chart-name>
+```
 
 ## Deploy
 The release is automatically deployed to Kubernetes cluster in GitHub Actions.
