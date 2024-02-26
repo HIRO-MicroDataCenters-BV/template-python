@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   app:
   - apiVersion: v2
+    appVersion: 1.0.4
+    created: "2024-02-26T12:35:20.794190719Z"
+    description: Web service template in Python for reuse.
+    digest: e8f320be56d13432204049f0e68b6936451316dff645e65ad367cf10e193ba63
+    name: app
+    type: application
+    urls:
+    - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
     appVersion: 1.0.3
     created: "2024-02-26T12:30:47.72791894Z"
     description: Web service template in Python for reuse.
@@ -21,4 +31,4 @@ entries:
     urls:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-1.0.2-dev.2.main.fa7fb413.tgz
     version: 1.0.2-dev.2.main.fa7fb413
-generated: "2024-02-26T12:30:47.726750503Z"
+generated: "2024-02-26T12:35:20.793794841Z"
