@@ -22,6 +22,16 @@ entries:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-2.0.11-dev.1.fix-pull-tags-in.881d7bd8.tgz
     version: 2.0.11-dev.1.fix-pull-tags-in.881d7bd8
   - apiVersion: v2
+    appVersion: 2.0.4
+    created: "2024-03-06T10:58:28.759982723Z"
+    description: Web service template in Python for reuse.
+    digest: 82aecf90aefd2ea0c524fabc0fbbf74595676b2e9de9e9844d24a529411a5790
+    name: app
+    type: application
+    urls:
+    - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-2.0.4.tgz
+    version: 2.0.4
+  - apiVersion: v2
     appVersion: 2.0.3
     created: "2024-03-05T14:17:37.722251921Z"
     description: Web service template in Python for reuse.
@@ -141,4 +151,4 @@ entries:
     urls:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-1.0.2-dev.2.main.fa7fb413.tgz
     version: 1.0.2-dev.2.main.fa7fb413
-generated: "2024-03-06T09:08:14.967683153Z"
+generated: "2024-03-06T10:58:28.759521351Z"
