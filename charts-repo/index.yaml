@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   app:
   - apiVersion: v2
+    appVersion: 2.0.11-dev.2.fix-pull-tags-in.001b34fb
+    created: "2024-03-06T09:08:14.968163495Z"
+    description: Web service template in Python for reuse.
+    digest: 155b3d7cf4a9779171a9b4e248d25142eda2d841b2953abc36bfc5df34a0ec59
+    name: app
+    type: application
+    urls:
+    - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-2.0.11-dev.2.fix-pull-tags-in.001b34fb.tgz
+    version: 2.0.11-dev.2.fix-pull-tags-in.001b34fb
+  - apiVersion: v2
     appVersion: 2.0.11-dev.1.fix-pull-tags-in.881d7bd8
     created: "2024-03-05T14:59:37.94479083Z"
     description: Web service template in Python for reuse.
@@ -131,4 +141,4 @@ entries:
     urls:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-1.0.2-dev.2.main.fa7fb413.tgz
     version: 1.0.2-dev.2.main.fa7fb413
-generated: "2024-03-05T14:59:37.943781968Z"
+generated: "2024-03-06T09:08:14.967683153Z"
