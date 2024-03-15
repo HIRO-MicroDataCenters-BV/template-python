@@ -12,6 +12,16 @@ entries:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-3.0.0.tgz
     version: 3.0.0
   - apiVersion: v2
+    appVersion: 3.0.0-dev.4.main.efa0c5ce
+    created: "2024-03-15T17:41:29.881957668Z"
+    description: Web service template in Python for reuse.
+    digest: ed3c7b3a3b86258017d5173285b1f89102d93a1c0fcb79231cefb0030ec7e8c3
+    name: app
+    type: application
+    urls:
+    - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-3.0.0-dev.4.main.efa0c5ce.tgz
+    version: 3.0.0-dev.4.main.efa0c5ce
+  - apiVersion: v2
     appVersion: 3.0.0-dev.3.main.3bc2de5b
     created: "2024-03-12T14:07:33.345088698Z"
     description: Web service template in Python for reuse.
@@ -191,4 +201,4 @@ entries:
     urls:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/charts-repo/app-1.0.2-dev.2.main.fa7fb413.tgz
     version: 1.0.2-dev.2.main.fa7fb413
-generated: "2024-03-12T14:07:33.344399898Z"
+generated: "2024-03-15T17:41:29.881520984Z"
