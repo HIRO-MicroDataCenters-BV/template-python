@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   app:
   - apiVersion: v2
+    appVersion: 3.0.0-dev.19.main.52b2737a
+    created: "2024-03-22T14:39:09.668867016Z"
+    description: Web service template in Python for reuse.
+    digest: 8ee207d6acac4809a539619ce9df2174bf42ec9d349c22f5180b92dc0b75ac87
+    name: app
+    type: application
+    urls:
+    - https://HIRO-MicroDataCenters-BV.github.io/template-python/helm-charts/app-3.0.0-dev.19.main.52b2737a.tgz
+    version: 3.0.0-dev.19.main.52b2737a
+  - apiVersion: v2
     appVersion: 3.0.0-dev.19.fix-bug-in-build.c49e9b1a
     created: "2024-03-22T14:24:00.192455509Z"
     description: Web service template in Python for reuse.
@@ -51,4 +61,4 @@ entries:
     urls:
     - https://HIRO-MicroDataCenters-BV.github.io/template-python/helm-charts/app-3.0.0-dev.16.feature-github-d.6c577a15.tgz
     version: 3.0.0-dev.16.feature-github-d.6c577a15
-generated: "2024-03-22T14:24:00.191980984Z"
+generated: "2024-03-22T14:39:09.668442303Z"
